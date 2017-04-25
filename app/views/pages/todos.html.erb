@@ -2,8 +2,11 @@
 
 <div id="todolist">
 <h2>Tasks:</h2>
-<p>{{ task1 }}</p>
-<p>{{ task2 }}</p>
-<p>{{ task3 }}</p>
-<input type="text" v-model="task3">
+
+  <ol>
+    <li v-for="task in tasks">{{ task }}</li>
+  </ol>
+
+<input type="text" v-model="tasks[2]">
+
 </div>

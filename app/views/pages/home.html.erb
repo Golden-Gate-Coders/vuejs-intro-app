@@ -1,7 +1,12 @@
 <h1>Intro to VueJS!</h1>
 
 <div id="home">
-
+  <h2>Reviews:</h2>
   <p v-for="review in reviews">{{ review }}</p>
+
+  <h3>Add new Review</h3>
+
+  <input type="text" v-model="newReview">
+  <button v-on:click="addReview()">Add Review</button>
 
 </div>
