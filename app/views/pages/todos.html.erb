@@ -4,9 +4,10 @@
 <h2>Tasks:</h2>
 
   <ol>
-    <li v-for="task in tasks">{{ task }}</li>
+    <li v-for="task in tasks" v-on:click="removeTask(task)">{{ task }}</li>
   </ol>
 
-<input type="text" v-model="tasks[2]">
+<input type="text" v-model="newTask">
+<button v-on:click="addTask()">Add New Task</button>
 
 </div>
