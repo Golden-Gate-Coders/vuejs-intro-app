@@ -2,12 +2,19 @@
 
 <div id="todolist">
 <h2>Tasks:</h2>
+<h4>Incomplete Tasks: {{ numberIncomplete() }} </h4>
+
 
   <ol>
-    <li v-for="task in tasks" v-on:click="removeTask(task)">{{ task }}</li>
+    <li v-for="task in tasks" v-bind:class="{strike: task.completed}" v-on:click="toggleTask(task)">{{ task.text }}</li>
   </ol>
 
-<input type="text" v-model="newTask">
+  <br>
+  <button v-on:click="clearCompleted()">Clear Completed</button>
+  <br>
+
+
+<input type="text" v-model="newTaskText">
 <button v-on:click="addTask()">Add New Task</button>
 
 </div>

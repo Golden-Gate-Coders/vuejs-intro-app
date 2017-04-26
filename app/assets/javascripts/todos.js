@@ -3,22 +3,55 @@ document.addEventListener("DOMContentLoaded", function(event) {
     el: '#todolist',
     data: {
       tasks: [
-        "Take out the garbage",
-        "Make the bed",
-        "Mow the lawn"
+        { text: "Take out the garbage", completed: false },
+        { text: "Make the bed", completed: false },
+        { text: "Mow the lawn", completed: true }
       ],
-      newTask: ''
+      newTaskText: ''
     },
     methods: {
       addTask: function() {
-        if (this.newTask != '') {          
-          this.tasks.push(this.newTask);
-          this.newTask = '';
+
+        var newTask = {
+          text: this.newTaskText,
+          completed: false
+        }
+
+        if (this.newTaskText != '') {          
+          this.tasks.push(newTask);
+          this.newTaskText = '';
         }
       },
       removeTask: function(task) {
         var index = this.tasks.indexOf(task);
         this.tasks.splice(index, 1);
+      },
+      toggleTask: function(task) {
+        task.completed = !task.completed
+      },
+      numberIncomplete: function() {
+        var totalTasks = this.tasks.length;
+        var completedTasks = 0;
+
+        for (var i = 0; i < this.tasks.length; i++) {
+          if (this.tasks[i].completed == true) {
+            completedTasks += 1;
+          }
+        }
+        
+        var incompleteTasks = totalTasks - completedTasks;
+        return incompleteTasks;
+      },
+      clearCompleted: function() {
+        var incompleteTasks = [];
+        for (var i = 0; i < this.tasks.length; i++) {
+          if (this.tasks[i].completed == false) {
+            incompleteTasks.push(this.tasks[i]);
+          }
+        }
+        console.log(incompleteTasks);
+        this.tasks = incompleteTasks;
+
       }
     }
   });
